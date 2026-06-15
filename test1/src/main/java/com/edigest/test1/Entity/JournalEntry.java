@@ -1,6 +1,7 @@
 package com.edigest.test1.Entity;
 
 
+import com.edigest.test1.enums.sentiment;
 import com.mongodb.lang.NonNull;
 //import lombok.*;
 import org.bson.types.ObjectId;
@@ -41,6 +42,16 @@ public class JournalEntry
     private String content;
     private LocalDateTime date;
 
+    public sentiment getSentiment() {
+        return Sentiment;
+    }
+
+    public void setSentiment(sentiment sentiment) {
+        Sentiment = sentiment;
+    }
+
+    private sentiment Sentiment;
+
     public ObjectId getId() {
         return id;
     }
@@ -80,6 +91,7 @@ public class JournalEntry
                 ", title='" + title + '\'' +
                 ", content='" + content + '\'' +
                 ", date=" + date +
+                ", Sentiment=" + Sentiment +
                 '}';
     }
 }
