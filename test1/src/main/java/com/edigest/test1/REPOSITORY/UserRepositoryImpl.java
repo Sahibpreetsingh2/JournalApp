@@ -17,11 +17,17 @@ public class UserRepositoryImpl {
         Query query = new Query();
 
 //        query.addCriteria(Criteria.where("age").gte(20));
-        Criteria criteria = new Criteria();
-        query.addCriteria(criteria.orOperator(
-               Criteria.where("email").exists(true),
-                Criteria.where("sentimentAnalysis").is(true))
-        );
+//        Criteria criteria = new Criteria();
+//        query.addCriteria(criteria.orOperator(
+//               Criteria.where("email").exists(true),
+//                Criteria.where("sentimentAnalysis").is(true))
+//        );
+
+        query.addCriteria(
+                Criteria.where("email").regex("^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$"));
+              query.addCriteria(Criteria.where("sentimentAnalysis").is(true));
+
+        
         return   mongoTemplate.find(query, User.class);
 
     }
